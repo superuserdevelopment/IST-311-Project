@@ -10,39 +10,39 @@ public class Controller
 		this.view = view;
   }
   
-  public login();
+  public void login();
   {
   }
   
-  public newUser();
+  public void newUser();
   {
   }
   
-  public deleteUser();
+  public void deleteUser();
   {
   }
   
-  public deleteUser();
+  public void deleteUser();
   {
   }
   
-  public updateView();
+  public void updateView();
   { 
   }
   
-  public addToFavorites();
+  public void addToFavorites();
   {
   }
   
-  public removeFromFavorites();
+  public void removeFromFavorites();
   {
   }
   
-  public addToWatchlist();
+  public void addToWatchlist();
   {
   }
   
-  public removeFromFavorites();
+  public void removeFromFavorites();
   {
   }
   
