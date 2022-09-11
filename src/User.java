@@ -44,12 +44,12 @@ public class User {
  }
   
   public boolean validatePassword(String password) {
-    boolean isPasswordValid = true;
+    boolean isPasswordValid = false;
     return isPasswordValid;
   }
   
   public boolean setPassword(String oldPassword, String newPassword) {
-    boolean isPasswordValid = true;
+    boolean isPasswordValid = false;
     return isPasswordValid;
   }
   
