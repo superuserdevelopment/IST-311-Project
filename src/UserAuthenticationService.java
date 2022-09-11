@@ -2,8 +2,11 @@ import java.util.*
 
 public class UserAuthenticationService 
 {
-  ArrayList<String> users = new ArrayList<String>();
+  ArrayList<String> users;
   
+  public UserAuthenticationService(){
+    users  = new ArrayList<String>();
+  }
   public Object loginUser(String username, String password) {
     
   }
