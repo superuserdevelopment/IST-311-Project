@@ -4,7 +4,7 @@ public abstract class Commodity {
 	private String name;
 	private String about;
 	private double value;
-	
+
 	public String getScrip() {
 		return scrip;
 	}

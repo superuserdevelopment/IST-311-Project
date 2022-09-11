@@ -5,14 +5,26 @@ public class User {
   private String name;
   private String username;
   private String password;
-  ArrayList<String> holdings = new ArrayList<String>();
-  ArrayList<String> watchlist = new ArrayList<String>();
-  ArrayList<String> favorites = new ArrayList<String>();
+  private ArrayList<String> holdings;
+  private ArrayList<String> watchlist;
+  private ArrayList<String> favorites;
   
  public User(String name, String username, String password) {
     this.name = name;
     this.username = username;
     this.password = password;
+    holdings = new ArrayList<String>();
+    watchlist = new ArrayList<String>();
+    favorites = new ArrayList<String>();
+ }
+
+ public User(){
+  name = "";
+  username = "";
+  password = "";
+  holdings = new ArrayList<String>();
+  watchlist = new ArrayList<String>();
+  favorites = new ArrayList<String>();
  }
   
  public String getName() {
@@ -31,26 +43,26 @@ public class User {
     this.username = username;
  }
   
-  public void validatePassword(String password, String[] args) {
+  public boolean validatePassword(String password) {
     boolean isPasswordValid = true;
-    boolean isPasswordNotValid = false;
+    return isPasswordValid;
   }
   
-  public void setPassword(String username, String password, String[] args) {
-    this.username = username;
-    this.password = passwword;
+  public boolean setPassword(String oldPassword, String newPassword) {
+    boolean isPasswordValid = true;
+    return isPasswordValid;
   }
   
-  public void getHoldings(String[] args) {
-    return holdings; 
+  public ArrayList<String> getHoldings() {
+     return holdings;
   }
   
-   public void getWatchlist(String[] args) {
-    return watchlist; 
+   public ArrayList<String> getWatchlist(String[] args) {
+    return watchlist;
   }
   
-   public void getFavorites(String[] args) {
-    return favorites; 
+   public ArrayList<String> getFavorites(String[] args) {
+     return favorites;
   }
   
 }
