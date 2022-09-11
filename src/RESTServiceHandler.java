@@ -12,6 +12,6 @@ public class RESTServiceHandler
   
   public Commodity getCommodityData(String scrip)
   {
-    return Commodity;
+    return new Stock();
   }
 }
