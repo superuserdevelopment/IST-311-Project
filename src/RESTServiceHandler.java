@@ -1,5 +1,6 @@
 
-public class RESTServiceHandler {
+public class RESTServiceHandler 
+{
   private String apiKey;
   private String apiUrl;
   
@@ -9,9 +10,8 @@ public class RESTServiceHandler {
     this.apiUrl = apiUrl;
   }
   
-  public getCommodityData
-  
-
-}
-
+  public Commodity getCommodityData(String scrip)
+  {
+    return Commodity;
+  }
 }
