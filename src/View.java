@@ -11,7 +11,8 @@ public class View
   
   public String showInputDialog(String query)
   {
-    return String;
+    String input = "";
+    return input;
   }
   
   public void showSplashScreen()
