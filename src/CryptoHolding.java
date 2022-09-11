@@ -3,6 +3,11 @@ public class CryptoHolding extends Crypto {
 	private double quantity;
 	private double holdingValue;
 	
+	public CryptoHolding(){
+		quantity = 0.0;
+		holdingValue = 0.0;
+	}
+	
 	public double getQuantity() {
 		return quantity;
 	}

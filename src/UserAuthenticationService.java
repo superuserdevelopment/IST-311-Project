@@ -1,19 +1,23 @@
-import java.util.*
+import java.io.ObjectStreamField;
+import java.util.*;
 
 public class UserAuthenticationService 
 {
-  ArrayList<String> users = new ArrayList<String>();
+  ArrayList<String> users;
   
-  public object loginUser(String username, String password) {
-    
+  public UserAuthenticationService(){
+    users  = new ArrayList<String>();
+  }
+  public Object loginUser(String username, String password) {
+    return new Object();
   }
   
-  public object createNewUser(String name, String username, String password) {
-    
+  public Object createNewUser(String name, String username, String password) {
+    return new Object();
   }
   
-  public object deleteUser(String username, String password) {
-    
+  public Object deleteUser(String username, String password) {
+    return new Object();
   }
 
 }
