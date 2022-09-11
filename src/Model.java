@@ -1,44 +1,44 @@
 
 public class Model {
+    public Model(){
+
+    }
   
-   public login(String username, String password) {
+   public void login(String username, String password) {
    
    }
   
-   public newUser(String name, String username, String password) {
+   public void newUser(String name, String username, String password) {
    
    }
   
-   public deleteUser(String username, String password) {
+   public void deleteUser(String username, String password) {
    
    }
   
-   public updateView() {
+   public void updateView() {
    
    }
   
-   public addToFavorites() {
+   public void addToFavorites() {
    
    }
   
-   public removeFromFavorites() {
+   public void removeFromFavorites() {
    
    }
   
-   public addToWatchlist() {
+   public void addToWatchlist() {
    
    }
   
-   public removeFromFavorites() {
-   
+  
+   public Commodity fetchCommodity(String commodity) {
+     return new Stock();
    }
   
-   public fetchCommodity(String commodity) {
-     return commodity;
-   }
-  
-   public fetchUserDetails(String User) {
-     return user;
+   public User fetchUserDetails(String User) {
+     return new User();
    } 
 
 }
