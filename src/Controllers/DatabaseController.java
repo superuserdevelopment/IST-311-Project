@@ -19,9 +19,8 @@ public class DatabaseController {
 
     public boolean makeConnection(){
         try{
-            System.out.println("Starting the connection");
             connection = DriverManager.getConnection(DATABASE_URL);
-            System.out.println("Made the connection");
+
             return true;
         }
         catch(SQLException sqlerror) {
@@ -56,9 +55,5 @@ public class DatabaseController {
         return result;
     }
 
-    public static void main(String[] args){
-        Connection connection = null;
-        DatabaseController x = new DatabaseController();
-        x.makeConnection();
-    }
+
 }
