@@ -55,5 +55,18 @@ public class DatabaseController {
         return result;
     }
 
+    public void displayUserDetails(){
+        try{
+            PreparedStatement checkIfUserIsValid = connection.prepareStatement("SELECT * FROM Users");
+            resultSet = checkIfUserIsValid.executeQuery();
+            System.out.println("Name\tEmail\t\tPhone Number\t\tisCryptoAccount\tisStockAccount\tUserID");
+            while(resultSet.next()){
+                System.out.println(resultSet.getString("Name") + "\t" + resultSet.getString("Email") + "\t\t" + resultSet.getString("PhoneNumber") + "\t\t" + resultSet.getBoolean("isCryptoAccount") + "\t\t" + resultSet.getBoolean("isStockAccount") + "\t\t" + resultSet.getString("UserID"));
+            }
+        }catch (SQLException sqlerror){
+            System.out.println(sqlerror.getMessage());
+        }
+    }
+
 
 }

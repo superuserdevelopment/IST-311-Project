@@ -18,6 +18,7 @@ public class App {
             System.out.println("--Login Successful--");
             if(userAuthenticationService.isAdmin(username, password)){
                 System.out.println("--Admin privileges granted--");
+                userAuthenticationService.displayUserDetails();
             }
             else{
                 System.out.println("--Not Admin--");
