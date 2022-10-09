@@ -66,11 +66,19 @@ public class LoginForm extends JFrame implements ActionListener {
 
             //make page visible to the user
             page.setVisible(true);
-
+            JPanel homePanel = new JPanel(new GridLayout(3, 1));
             //create a welcome label and set it to the new page
+            JButton showUsersButton = new JButton("SHOW USER DETAILS");
             JLabel nameLabel = new JLabel("Welcome: "+ ((user != null)? user.getName() : "Name not found"));
             JLabel usernameLabel = new JLabel("Username: "+ ((user != null)? user.getUsername() : "Username not found"));
-            page.getContentPane().add(nameLabel);
+            JLabel adminLabel = new JLabel(userAuthenticationService.isAdmin(username, password) ? "Admin Access Granted" : "Admin Access Not Granted");
+            homePanel.add(adminLabel);
+            homePanel.add(nameLabel);
+            homePanel.add(usernameLabel);
+            if(userAuthenticationService.isAdmin(username, password))
+            homePanel.add(showUsersButton);
+
+            page.add(homePanel, BorderLayout.CENTER);
             //page.getContentPane().add(usernameLabel);
         }
         else{
