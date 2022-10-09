@@ -1,3 +1,5 @@
+
+
 package Controllers;
 
 import javax.swing.*;
@@ -9,14 +11,18 @@ public class DatabaseController {
     Statement statement = null;
     ResultSet resultSet = null;
 
+    /**
+     * Parameterized Constructor for the DatabaseController class
+     * @param databaseName name of the database that is to be controlled
+     */
     public DatabaseController(String databaseName){
         DATABASE_URL += databaseName;
     }
 
-    public DatabaseController(){
-        DATABASE_URL += "HumanResources.accdb";
-    }
-
+    /**
+     * Make the connection with the database
+     * @return true if connection is successful else false
+     */
     public boolean makeConnection(){
         try{
             connection = DriverManager.getConnection(DATABASE_URL);
@@ -29,6 +35,18 @@ public class DatabaseController {
         }
     }
 
+    /**
+     * Add new user to the database
+     * @param userID
+     * @param name
+     * @param email
+     * @param phoneNumber
+     * @param isCryptoAccount
+     * @param isStockAccount
+     * @param password
+     * @param isAdmin
+     * @return 1 if added successfully else returns 0
+     */
     public int addUser(String userID, String name, String email, String phoneNumber, boolean isCryptoAccount, boolean isStockAccount, String password, boolean isAdmin){
         int result = 0; //return
 
@@ -55,6 +73,9 @@ public class DatabaseController {
         return result;
     }
 
+    /**
+     * Displays the user data from the database in the console
+     */
     public void displayUserDetails(){
         try{
             PreparedStatement checkIfUserIsValid = connection.prepareStatement("SELECT * FROM Users");
