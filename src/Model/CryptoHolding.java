@@ -1,10 +1,11 @@
+package Model;
 
 public class CryptoHolding extends Crypto {
 	private double quantity;
 	private double holdingValue;
 
 	/**
-	 * Constructor to initialize the Crypto Holding object
+	 * Constructor to initialize the Model.Crypto Holding object
 	 */
 	public CryptoHolding(){
 		quantity = 0.0;

@@ -16,7 +16,7 @@ public class LoginForm extends JFrame implements ActionListener {
 
     public LoginForm()
     {
-
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         //create label for username
         usernameLabel = new JLabel();
         usernameLabel.setText("Username");      //set label value for usernameField
@@ -75,7 +75,8 @@ public class LoginForm extends JFrame implements ActionListener {
         }
         else{
             //show error message
-            System.out.println("Please enter valid username and password");
+            JOptionPane.showMessageDialog(null, "Invalid Username or Password",
+                    "Login Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

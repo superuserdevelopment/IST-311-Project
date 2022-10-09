@@ -1,9 +1,10 @@
+package Model;
 
 public class Crypto extends Commodity {
 	private int founded;
 
 	/**
-	 * Constructor to create a Crypto object
+	 * Constructor to create a Model.Crypto object
 	 */
 	public Crypto(){
 		founded = -1;		

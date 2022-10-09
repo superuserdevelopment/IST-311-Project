@@ -1,5 +1,9 @@
+package Controllers;
 
-public class RESTServiceHandler 
+import Model.Commodity;
+import Model.Stock;
+
+public class RESTServiceHandler
 {
   private String apiKey;
   private String apiUrl;
