@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class User {
@@ -10,7 +12,7 @@ public class User {
     private ArrayList<String> favorites;
 
     /**
-     * Parameterized constructor to initialize the User object with given data
+     * Parameterized constructor to initialize the Model.User object with given data
      * @param name the name of the user
      * @param username the username of the user
      * @param password the password of the user
@@ -25,7 +27,7 @@ public class User {
     }
 
     /**
-     * Constructor to initialize the User object with default data
+     * Constructor to initialize the Model.User object with default data
      */
     public User() {
         name = "";

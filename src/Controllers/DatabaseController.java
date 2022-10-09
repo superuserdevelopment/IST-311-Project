@@ -2,11 +2,13 @@
 
 package Controllers;
 
+import Model.User;
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.sql.*;
 
 public class DatabaseController {
-    static String DATABASE_URL = "jdbc:ucanaccess://" + System.getProperty("user.dir") + "//";
+    String DATABASE_URL = "jdbc:ucanaccess://" + System.getProperty("user.dir") + "//";
     Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
@@ -16,8 +18,13 @@ public class DatabaseController {
      * @param databaseName name of the database that is to be controlled
      */
     public DatabaseController(String databaseName){
-        DATABASE_URL += databaseName;
+            DATABASE_URL += databaseName;
     }
+
+    public DatabaseController(){
+
+    }
+
 
     /**
      * Make the connection with the database
@@ -63,7 +70,7 @@ public class DatabaseController {
 
             result = insertNewUser.executeUpdate();
             if(result == 1){
-                JOptionPane.showMessageDialog(null, name, "User added to the table", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, name, "Model.User added to the table", JOptionPane.INFORMATION_MESSAGE);
             }
 
         }catch (SQLException sqlerror){
@@ -87,6 +94,20 @@ public class DatabaseController {
         }catch (SQLException sqlerror){
             System.out.println(sqlerror.getMessage());
         }
+    }
+
+    public User getUserDetails(String username){
+        try{
+            PreparedStatement retrieveUserData = connection.prepareStatement("SELECT * FROM Users WHERE UserID = ?");
+            retrieveUserData.setString(1, username);
+            resultSet = retrieveUserData.executeQuery();
+            if(resultSet.next()){
+                return new User(resultSet.getString("Name"), resultSet.getString("UserID"), resultSet.getString("Password"));
+            }
+        }catch (SQLException sqlerror){
+            System.out.println(sqlerror.getMessage());
+        }
+        return null;
     }
 
 
