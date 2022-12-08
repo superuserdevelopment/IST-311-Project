@@ -1,11 +1,20 @@
 
+/**
+ * IST-311 Object Oriented Design and Software Application
+ * Prof. Jesse Middaugh
+ * Project
+ * Team-2
+ */
 
 package Controllers;
 
+import Model.Stock;
 import Model.User;
 import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DatabaseController {
     String DATABASE_URL = "jdbc:ucanaccess://" + System.getProperty("user.dir") + "//";
@@ -80,6 +89,27 @@ public class DatabaseController {
         return result;
     }
 
+    public int updateStocks(User user){
+        int result = 0; //return
+
+        try{
+            PreparedStatement insertNewUser = connection.prepareStatement("UPDATE Users SET Stocks = ? WHERE UserID = ?", Statement.RETURN_GENERATED_KEYS);
+            insertNewUser.setString(1, getStockListModified(user.getHoldings()));
+            insertNewUser.setString(2, user.getUsername());
+
+
+            result = insertNewUser.executeUpdate();
+            if(result == 1){
+                JOptionPane.showMessageDialog(null, "Stocks successfully updated", "Addition Successful", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }catch (SQLException sqlerror){
+            System.out.println(sqlerror.getMessage());
+            JOptionPane.showMessageDialog(null, sqlerror.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return result;
+    }
+
     /**
      * Displays the user data from the database in the console
      */
@@ -102,13 +132,44 @@ public class DatabaseController {
             retrieveUserData.setString(1, username);
             resultSet = retrieveUserData.executeQuery();
             if(resultSet.next()){
-                return new User(resultSet.getString("Name"), resultSet.getString("UserID"), resultSet.getString("Password"));
+                return new User(resultSet.getString("Name"), resultSet.getString("UserID"), resultSet.getString("Password"), getStocksList(resultSet.getString("Stocks")));
             }
         }catch (SQLException sqlerror){
             System.out.println(sqlerror.getMessage());
         }
         return null;
     }
+
+    public Stock getStockDetails(String scrip){
+        try{
+            PreparedStatement retrieveUserData = connection.prepareStatement("SELECT * FROM Stocks WHERE Scrip = ?");
+            retrieveUserData.setString(1, scrip);
+            resultSet = retrieveUserData.executeQuery();
+            if(resultSet.next()){
+                return new Stock(resultSet.getString("Scrip"), resultSet.getString("StockName"), resultSet.getString("About"), resultSet.getDouble("StockValue"), resultSet.getString("CEO"), resultSet.getString("Headquarters"), resultSet.getInt("Founded"));
+            }
+        }catch (SQLException sqlerror){
+            System.out.println(sqlerror.getMessage());
+        }
+        return null;
+    }
+
+    public ArrayList<String> getStocksList(String data){
+        data = data.substring(1, data.length());
+        String[] res = data.split("[,]", 0);
+        return new ArrayList<String>(Arrays.asList(res));
+    }
+
+    public String getStockListModified(ArrayList<String> stocks){
+        String data = "";
+        for(String a : stocks){
+            data = data+ a + ",";
+        }
+        data = data.substring(0,data.length());
+        return data;
+    }
+
+
 
 
 }

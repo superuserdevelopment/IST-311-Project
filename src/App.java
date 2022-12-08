@@ -1,3 +1,10 @@
+/**
+ * IST-311 Object Oriented Design and Software Application
+ * Prof. Jesse Middaugh
+ * Project
+ * Team-2
+ */
+
 import Controllers.DatabaseController;
 import Controllers.UserAuthenticationService;
 import View.LoginForm;
@@ -32,7 +39,7 @@ public class App {
         {
             //create instance of the CreateLoginForm
             LoginForm form = new LoginForm();
-            form.setSize(300,100);  //set size of the frame
+            form.setSize(400,100);  //set size of the frame
             form.setVisible(true);  //make form visible to the user
         }
         catch(Exception e)

@@ -1,3 +1,11 @@
+
+/**
+ * IST-311 Object Oriented Design and Software Application
+ * Prof. Jesse Middaugh
+ * Project
+ * Team-2
+ */
+
 package Model;
 
 public class Stock extends Commodity {
@@ -31,6 +39,20 @@ public class Stock extends Commodity {
 
 	// Stores the trade volume of the stock
 	private long volume;
+
+	public Stock(){
+
+	}
+
+	public Stock(String scrip, String name, String about, double value, String ceo, String headquarters, int founded){
+		setScrip(scrip);
+		setName(name);
+		setAbout(about);
+		setValue(value);
+		this.ceo = ceo;
+		this.headquarters = headquarters;
+		this.founded = founded;
+	}
 
 	/**
 	 * Gets the CEO of the company

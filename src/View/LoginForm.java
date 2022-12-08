@@ -1,15 +1,23 @@
+/**
+ * IST-311 Object Oriented Design and Software Application
+ * Prof. Jesse Middaugh
+ * Project
+ * Team-2
+ */
+
 package View;
 
 import Controllers.DatabaseController;
 import Controllers.UserAuthenticationService;
 import Model.User;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginForm extends JFrame implements ActionListener {
-    JButton submitButton;
+    JButton submitButton, newUserButton;
     JPanel loginPanel;
     JLabel usernameLabel, passwordLabel;
     final JTextField  usernameField, passwordField;
@@ -18,6 +26,7 @@ public class LoginForm extends JFrame implements ActionListener {
     {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         //create label for username
+        setSize(400, 200);
         usernameLabel = new JLabel();
         usernameLabel.setText("Username");      //set label value for usernameField
 
@@ -32,22 +41,24 @@ public class LoginForm extends JFrame implements ActionListener {
         passwordField = new JPasswordField(15);    //set length for the password
 
         //create submit button
-        submitButton = new JButton("SUBMIT"); //set label to button
-
+        submitButton = new JButton("Login"); //set label to button
+        newUserButton = new JButton("New Here?");
         //create panel to put form elements
-        loginPanel = new JPanel(new GridLayout(3, 1));
+        loginPanel = new JPanel(new GridLayout(3, 2));
         loginPanel.add(usernameLabel);    //set username label to panel
         loginPanel.add(usernameField);   //set text field to panel
         loginPanel.add(passwordLabel);    //set password label to panel
-        loginPanel.add(passwordField);   //set text field to panel
+        loginPanel.add(passwordField);      //set text field to panel
+        loginPanel.add(newUserButton);    //add button to the panel
         loginPanel.add(submitButton);           //set button to panel
+
 
         //set border to panel
         add(loginPanel, BorderLayout.CENTER);
 
         //perform action on button click
         submitButton.addActionListener(this);     //add action listener to button
-        setTitle("LOGIN FORM");         //set title to the login form
+        setTitle("Login Page");         //set title to the login form
     }
 
     public void actionPerformed(ActionEvent ae)     //pass action listener as a parameter
@@ -58,30 +69,32 @@ public class LoginForm extends JFrame implements ActionListener {
         UserAuthenticationService userAuthenticationService = new UserAuthenticationService("TradingDatabase.accdb");
         DatabaseController databaseController = new DatabaseController("TradingDatabase.accdb");
         databaseController.makeConnection();
+
         //check whether the credentials are authentic or not
         if (userAuthenticationService.validateUser(username, password)) {  //if authentic, navigate user to a new page
-            User user = databaseController.getUserDetails(username);
+            String result = (String) JOptionPane.showInputDialog(
+                    this,
+                    "Enter the One Time Password sent to the registered email address",
+                    "Two-Factor Authentication",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    ""
+            );
+
             //create instance of the NewPage
-            HomePage page = new HomePage();
+            if (result.equals("999999")) {
+                User model = databaseController.getUserDetails(username);
 
-            //make page visible to the user
-            page.setVisible(true);
-            JPanel homePanel = new JPanel(new GridLayout(3, 1));
-            //create a welcome label and set it to the new page
-            JButton showUsersButton = new JButton("SHOW USER DETAILS");
-            JLabel nameLabel = new JLabel("Welcome: "+ ((user != null)? user.getName() : "Name not found"));
-            JLabel usernameLabel = new JLabel("Username: "+ ((user != null)? user.getUsername() : "Username not found"));
-            JLabel adminLabel = new JLabel(userAuthenticationService.isAdmin(username, password) ? "Admin Access Granted" : "Admin Access Not Granted");
-            homePanel.add(adminLabel);
-            homePanel.add(nameLabel);
-            homePanel.add(usernameLabel);
-            if(userAuthenticationService.isAdmin(username, password))
-            homePanel.add(showUsersButton);
+                HomePage page = new HomePage(username, password);
+                page.setVisible(true);
+                this.setVisible(false);
 
-            page.add(homePanel, BorderLayout.CENTER);
-            //page.getContentPane().add(usernameLabel);
-        }
-        else{
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid One Time Password",
+                        "Authentication Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
             //show error message
             JOptionPane.showMessageDialog(null, "Invalid Username or Password",
                     "Login Error", JOptionPane.ERROR_MESSAGE);

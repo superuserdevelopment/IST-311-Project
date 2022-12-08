@@ -1,3 +1,11 @@
+
+/**
+ * IST-311 Object Oriented Design and Software Application
+ * Prof. Jesse Middaugh
+ * Project
+ * Team-2
+ */
+
 package Model;
 
 import java.util.ArrayList;
@@ -17,11 +25,11 @@ public class User {
      * @param username the username of the user
      * @param password the password of the user
      */
-    public User(String name, String username, String password) {
+    public User(String name, String username, String password, ArrayList<String> holdings) {
         this.name = name;
         this.username = username;
         this.password = password;
-        holdings = new ArrayList<String>();
+        this.holdings = holdings;
         watchlist = new ArrayList<String>();
         favorites = new ArrayList<String>();
     }
@@ -113,6 +121,10 @@ public class User {
      */
     public ArrayList<String> getFavorites() {
         return favorites;
+    }
+
+    public void addToHoldings(String stock){
+        holdings.add(stock);
     }
 
 }
